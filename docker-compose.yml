@@ -1,0 +1,16 @@
+services:
+  backend:
+    build: ./backend
+    environment:
+      # 上传大小上限（MB）与允许跨域的来源（本地开发用）
+      MAX_UPLOAD_MB: "100"
+      CORS_ORIGINS: "http://localhost:5173"
+    expose:
+      - "8000"
+
+  frontend:
+    build: ./frontend
+    depends_on:
+      - backend
+    ports:
+      - "8080:80"
